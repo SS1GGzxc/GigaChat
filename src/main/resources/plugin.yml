@@ -1,0 +1,13 @@
+name: GigaChat
+version: '${project.version}'
+main: SS1GGzxc.GigaMain.Main
+api-version: '1.20'
+load: STARTUP
+commands:
+  Ask:
+    description: "Спросит у GigaChat"
+    usage: "/ask <question/вопрос>"
+
+  SetKey:
+    description: "Устаносить ключ авторизации для работы GigaChat"
+    usage: "/setkey <key/ключ>"
