@@ -1,11 +1,12 @@
-package SS1GGzxc.Settings;
+package com.SS1GGzxc.Settings;
 
-import SS1GGzxc.GigaMain.Main;
+import com.SS1GGzxc.GigaMain.Main;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 public class Settings {
     private final static Settings instance = new Settings();
@@ -15,6 +16,7 @@ public class Settings {
 
     private String AccessKey;
     private int MaxTokens;
+    private String Language;
 
     public void load() {
         file = new File(Main.getInstance().getDataFolder(), "settings.yml");
@@ -34,6 +36,7 @@ public class Settings {
 
         MaxTokens = config.getInt("GigaChat.Max_Tokens", 128);
         AccessKey = config.getString("GigaChat.Access_Key");
+        Language = config.getString("GigaChat.Language");
     }
 
     public void save() {
@@ -70,5 +73,17 @@ public class Settings {
     public void setMaxTokens(int maxTokens) {
         MaxTokens = maxTokens;
         set("GigaChat.Max_Tokens", maxTokens);
+    }
+
+    public String getLanguage() {
+        return Language;
+    }
+    public boolean isEn() {
+        return Objects.equals(Language, "en");
+    }
+
+    public void setLanguage(String language) {
+        Language = language;
+        set("GigaChat.Language", language);
     }
 }

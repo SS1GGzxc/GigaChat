@@ -1,7 +1,7 @@
-package SS1GGzxc.Requests;
+package com.SS1GGzxc.Requests;
 
-import SS1GGzxc.Constants.Constants;
-import SS1GGzxc.Settings.Settings;
+import com.SS1GGzxc.Constants.Constants;
+import com.SS1GGzxc.Settings.Settings;
 import okhttp3.*;
 import org.json.JSONObject;
 
@@ -12,11 +12,10 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 
-import static SS1GGzxc.Constants.Constants.*;
+import static com.SS1GGzxc.Constants.Constants.*;
 
 public class GenerateRequest {
     private OkHttpClient client;
-    public static String Access_Token;
     public int ServerStatus;
 
     public GenerateRequest() {
@@ -48,7 +47,7 @@ public class GenerateRequest {
         }
 
         Headers UpdateHeaders = new Headers.Builder()
-                .add("Authorization", "Bearer " + Access_Key.trim())
+                .add("Authorization", "Bearer " + Settings.getInstance().getAccessKey())
                 .add("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8")
                 .add("Content-Length", contentLenght)
                 .add("Host", "ngw.devices.sberbank.ru:9443")
@@ -64,7 +63,7 @@ public class GenerateRequest {
         try (Response response = client.newCall(UpdateKeyReq).execute()) {
             assert response.body() != null;
             JSONObject jsonObject = new JSONObject(response.body().string());
-            Access_Token = jsonObject.getString("access_token");
+            Settings.getInstance().setAccessKey(jsonObject.getString("access_token"));
             ServerStatus = response.code();
         } catch (IOException e) {
             e.printStackTrace();
@@ -82,7 +81,7 @@ public class GenerateRequest {
 
         try {
             Headers headers = new Headers.Builder()
-                    .add("Authorization", "Bearer " + Access_Token)
+                    .add("Authorization", "Bearer " + Settings.getInstance().getAccessKey())
                     .add("Content-Length", String.valueOf(body.contentLength()))
                     .add("Host", "gigachat.devices.sberbank.ru")
                     .add("Content-Type", "application/json")

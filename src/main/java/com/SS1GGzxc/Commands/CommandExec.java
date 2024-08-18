@@ -1,7 +1,9 @@
-package SS1GGzxc.Commands;
+package com.SS1GGzxc.Commands;
 
-import SS1GGzxc.Constants.Constants;
-import SS1GGzxc.Requests.GenerateRequest;
+import com.SS1GGzxc.Constants.Constants;
+import com.SS1GGzxc.Language.Phrases;
+import com.SS1GGzxc.Requests.GenerateRequest;
+import com.SS1GGzxc.Settings.Settings;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -19,11 +21,11 @@ public class CommandExec implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (commandSender instanceof Player) {
-            if(Constants.Access_Key.isEmpty()) {
-                commandSender.sendMessage(ChatColor.RED + "Ошибка: Укажите ключ авторизации!");
+            if(Settings.getInstance().getAccessKey().isEmpty()) {
+                commandSender.sendMessage(ChatColor.RED + Phrases.getErrorSetKey());
                 return true;
             }
-            commandSender.sendMessage(ChatColor.GREEN + "Получение ключа доступа\nОжижайте ответа.");
+            commandSender.sendMessage(ChatColor.GREEN + Phrases.getGettingKey());
             final Future<Integer> UpdateKey = service.submit(request::UpdateKey);
 
             while (!UpdateKey.isDone()) {
@@ -33,7 +35,7 @@ public class CommandExec implements CommandExecutor {
                     e.printStackTrace();
                 }
             }
-            commandSender.sendMessage(ChatColor.GREEN + "Ключ доступа обновлен!\nСоздается ответ на ваш вопрос!");
+            commandSender.sendMessage(ChatColor.GREEN + Phrases.getSuccessKey());
 
             final Future<String> future = service.submit(() -> request.CreateRequest(String.join(" ", strings)));
 
@@ -45,7 +47,7 @@ public class CommandExec implements CommandExecutor {
                 }
             }
         } else {
-            commandSender.sendMessage("Данную комманду можно использовать только игрокам!");
+            commandSender.sendMessage(Phrases.getConsoleError());
         }
         return true;
     }

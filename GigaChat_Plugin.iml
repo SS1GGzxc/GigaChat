@@ -3,10 +3,24 @@
   <component name="FacetManager">
     <facet type="minecraft" name="Minecraft">
       <configuration>
-        <autoDetectTypes>
-          <platformType>PAPER</platformType>
-          <platformType>ADVENTURE</platformType>
-        </autoDetectTypes>
+        <userChosenTypes>
+          <map>
+            <entry key="BUKKIT" value="false" />
+            <entry key="SPIGOT" value="false" />
+            <entry key="PAPER" value="true" />
+            <entry key="ARCHITECTURY" value="true" />
+            <entry key="FORGE" value="false" />
+            <entry key="FABRIC" value="false" />
+            <entry key="SPONGE" value="true" />
+            <entry key="BUNGEECORD" value="false" />
+            <entry key="WATERFALL" value="true" />
+            <entry key="VELOCITY" value="true" />
+            <entry key="MIXIN" value="false" />
+            <entry key="NEOFORGE" value="false" />
+            <entry key="MCP" value="false" />
+            <entry key="ADVENTURE" value="true" />
+          </map>
+        </userChosenTypes>
         <projectReimportVersion>1</projectReimportVersion>
       </configuration>
     </facet>

@@ -1,13 +1,17 @@
 name: GigaChat
 version: '${project.version}'
-main: SS1GGzxc.GigaMain.Main
-api-version: '1.20'
+main: com.SS1GGzxc.GigaMain.Main
+api-version: '1.16'
 load: STARTUP
 commands:
   Ask:
-    description: "Спросит у GigaChat"
-    usage: "/ask <question/вопрос>"
+    description: "Ask GigaChat."
+    usage: "/ask <question>"
 
   SetKey:
-    description: "Устаносить ключ авторизации для работы GigaChat"
-    usage: "/setkey <key/ключ>"
+    description: "Set authorization key for GigaChat."
+    usage: "/setkey <key>"
+
+  SetLanguage:
+    description: "Set GigaChat reply language."
+    usage: "/setlanguage <en/ru>"

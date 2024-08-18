@@ -1,4 +1,4 @@
-package SS1GGzxc.Constants;
+package com.SS1GGzxc.Constants;
 
 import okhttp3.MediaType;
 
@@ -11,7 +11,6 @@ public abstract class Constants {
     public final static String CreatePromptRequest = "https://gigachat.devices.sberbank.ru/api/v1/chat/completions";
     public final static MediaType urlencodedType = MediaType.parse("application/x-www-form-urlencoded");
     public final static MediaType AppJsonType = MediaType.parse("application/json");
-    public static String Access_Key;
     public final static String PromptJSONPattern = "{\n" +
             "  \"model\": \"GigaChat:latest\",\n" +
             "  \"n\": 1,\n" +
@@ -23,6 +22,7 @@ public abstract class Constants {
             "        }\n" +
             "    ]\n" +
             "}";
+
     public static final TrustManager[] trustAllCerts = new TrustManager[]{
             new X509TrustManager() {
                 @Override
